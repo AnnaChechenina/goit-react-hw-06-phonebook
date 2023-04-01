@@ -1,7 +1,18 @@
 import PropTypes from 'prop-types';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setQuery } from 'redux/filterSlice';
+import { selectFilter } from 'redux/selectors';
 import css from './Filter.module.css';
 
-function Filter({ filter, changeFilter }) {
+function Filter() {
+  const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
+
+  const onChange = filter => {
+    dispatch(setQuery(filter));
+  };
+
   return (
     <label className={css.label}>
       <p className={css.text}>Find contacts by name</p>
@@ -10,7 +21,7 @@ function Filter({ filter, changeFilter }) {
         type="text"
         value={filter}
         placeholder="Search..."
-        onChange={changeFilter}
+        onChange={evt => onChange(evt.target.value)}
       />
     </label>
   );

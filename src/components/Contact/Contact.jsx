@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contactsSlice';
 import { FaTrash, FaUserAlt } from 'react-icons/fa';
 import css from './Contact.module.css';
 
-function Contact({ name, number, onDeleteContact, contactId }) {
+function Contact({ name, number, contactId }) {
+  const dispatch = useDispatch();
+  const onDeleteContact = contactId => {
+    dispatch(deleteContact(contactId));
+  };
+
   return (
     <>
       <div className={css.wrapper}>
