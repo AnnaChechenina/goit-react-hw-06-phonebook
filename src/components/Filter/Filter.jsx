@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from 'redux/filterSlice';
@@ -9,8 +8,8 @@ function Filter() {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
-  const onChange = filter => {
-    dispatch(setQuery(filter));
+  const onChange = evt => {
+    dispatch(setQuery(evt.target.value));
   };
 
   return (
@@ -21,15 +20,10 @@ function Filter() {
         type="text"
         value={filter}
         placeholder="Search..."
-        onChange={evt => onChange(evt.target.value)}
+        onChange={onChange}
       />
     </label>
   );
 }
-
-Filter.prototype = {
-  filter: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
-};
 
 export default Filter;

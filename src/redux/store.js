@@ -10,8 +10,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import contactsSlice from './contactsSlice';
-import filterSlice from './filterSlice';
+import contactsReducer from './contactsSlice';
+import filterReducer from './filterSlice';
 
 const persistConfig = {
   key: 'contacts',
@@ -20,8 +20,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  contacts: contactsSlice,
-  filter: filterSlice,
+  contacts: contactsReducer,
+  filter: filterReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

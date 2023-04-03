@@ -3,8 +3,12 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 import Message from './Message';
 import css from './App.module.css';
+import { selectContacts } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const contacts = useSelector(selectContacts);
+
   return (
     <div className={css.container}>
       <h1 className={css.title}>
@@ -14,10 +18,11 @@ function App() {
 
       <h2 className={css.subtitle}>Contacts</h2>
       <Filter />
-
-      <ContactList />
-
-      <Message text="Contact list is empty." />
+      {contacts.length ? (
+        <ContactList />
+      ) : (
+        <Message text="Contact list is empty." />
+      )}
     </div>
   );
 }

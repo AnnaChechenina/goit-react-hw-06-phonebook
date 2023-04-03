@@ -36,7 +36,7 @@ function Contact({ name, number, contactId }) {
 Contact.prototype = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
+  contactId: PropTypes.string.isRequired,
 };
 
 export default Contact;
